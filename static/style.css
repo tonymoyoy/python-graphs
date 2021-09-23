@@ -1,0 +1,40 @@
+body {font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;}
+a, h1, h2 {color: #2a1b5f;}
+h1, h2 {margin: 0;}
+h1 {border-bottom: 2px solid #eee;}
+h2 { font-size: 1em; }
+
+table.dataframe, .dataframe th, .dataframe td{
+    border: none;
+    border-bottom: 1px solid #c8c8c8;
+    border-collapse: collapse;
+    text-align: left;
+    padding: 10px;
+    margin-bottom: 40px;
+    font-size: 0.8em;
+}
+
+.high th { background-color: #bd3043; color: white; }
+.medium th { background-color: #b98230; color: white; }
+.low th { background-color: #5a592e; color: white; }
+
+
+tr:nth-child(even) { background-color: #eee;}
+tr:nth-child(odd) { background-color: #fff;}
+tr:hover { background-color: #ffff99;}
+
+table#title {
+    width: 320px;
+    padding: 10px;
+    margin: 0;
+    font-size: 1em;
+    color: #2f3136
+}
+
+table#big {
+    width: 320px;
+    padding: 10px;
+    margin: 0;
+    font-size: 3em;
+    color: #887960
+}
