@@ -24,8 +24,11 @@ march = list(metrics['March'])
 # Standard deviation - box_plot = pygal.Box(box_mode="stdev")
 # Population standard deviation - box_plot = pygal.Box(box_mode="pstdev")
 
+# Graph Colors
+CustomStyle = Style(colors=['#3352ff', '#9E23FF', '#E5E21A', "#F8492D"])
+
 # Graph parameters
-box_plot = pygal.Box(box_mode="stdev")
+box_plot = pygal.Box(style=CustomStyle, box_mode="stdev")
 box_plot.title = 'Q1 Metrics Results'
 box_plot.add('January', january)
 box_plot.add('February', february)
