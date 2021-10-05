@@ -12,8 +12,8 @@ def welcome():
     return render_template("welcome.html")
 
 
-@app.route("/line_graph")
-def line_graph():
+@app.route("/line_graph_pygal")
+def line_graph_pygal():
     # Variables
     source = 'metrics.xlsx'
     x_label = "Month"
@@ -51,6 +51,43 @@ def line_graph():
     line_chart.range = [.5, 1]
     graph_data = line_chart.render_data_uri()
     return render_template("graphing.html", graph_data=graph_data)
+
+@app.route("/box_graph_pygal")
+def box_graph_pygal():
+    # Variables
+    source = 'metrics.xlsx'
+    x_label = "Month"
+    y_label = "SLA % Made"
+    title_label = "Monthly SLA's"
+
+    # Import from an excel file
+    metrics = pd.read_excel(source, sheet_name='box')
+
+    # Get the data from the sheet
+    january = list(metrics['January'])
+    february = list(metrics['February'])
+    march = list(metrics['March'])
+
+    # Box Plot Graph modes
+    # 1.5 interquartile range - box_plot = pygal.Box(box_mode="1.5IQR")
+    # Tukey = box_plot = pygal.Box(box_mode="tukey")
+    # Standard deviation - box_plot = pygal.Box(box_mode="stdev")
+    # Population standard deviation - box_plot = pygal.Box(box_mode="pstdev")
+
+    # Graph Colors
+    CustomStyle = Style(colors=['#3352ff', '#9E23FF', '#E5E21A', "#F8492D"])
+
+    # Graph parameters
+    box_plot = pygal.Box(style=CustomStyle, box_mode="stdev")
+    box_plot.title = 'Q1 Metrics Results'
+    box_plot.add('January', january)
+    box_plot.add('February', february)
+    box_plot.add('March', march)
+    graph_data = box_plot.render_data_uri()
+    return render_template("graphing.html", graph_data=graph_data)
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5050, host="127.0.0.1")
